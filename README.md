@@ -100,11 +100,6 @@ By using Ollama with `qwen2.5:7b`, the entire pipeline runs locally with no exte
 ```bash
 cd issue-detection-service
 
-# Install Ollama and pull the model
-brew install ollama
-ollama serve  # starts on localhost:11434
-ollama pull qwen2.5:7b
-
 # Install Python dependencies
 uv sync
 
@@ -116,7 +111,29 @@ cp .env.example .env
 # Edit .env to add LINEAR_API_KEY (required)
 ```
 
+### Starting Ollama
+
+Ollama must be installed and running before starting the service.
+
+```bash
+# Install Ollama (macOS)
+brew install ollama
+
+# Start the Ollama server (keep this running in a separate terminal)
+ollama serve
+
+# Pull the required model
+ollama pull qwen2.5:7b
+```
+
+Ollama runs on `http://localhost:11434` by default. You can verify it's running with:
+```bash
+curl http://localhost:11434
+```
+
 ### Running the Service
+
+With Ollama running in a separate terminal:
 
 ```bash
 # Start the FastAPI server
